@@ -1,6 +1,7 @@
 package com.wildies.wildies.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -14,6 +15,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -95,6 +99,18 @@ public class Usuario {
     @OneToMany(mappedBy = "amigo", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List <Amistad> amigosRecibidos;
+
+    @OneToMany(mappedBy = "creador")
+    @JsonIgnore
+    private List<Evento> eventosCreados = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(
+        name = "evento_usuario",
+        joinColumns = @JoinColumn(name = "usuario_id"),
+        inverseJoinColumns = @JoinColumn(name = "evento_id")
+    )
+    private List<Evento> eventos = new ArrayList<>();
 
     
     

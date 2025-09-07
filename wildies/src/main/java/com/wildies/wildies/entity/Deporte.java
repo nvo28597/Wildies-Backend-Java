@@ -1,5 +1,6 @@
 package com.wildies.wildies.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -40,19 +41,21 @@ public class Deporte {
     private String nombre;
 
     @ManyToMany
-    @JoinTable(
-        name = "deporte_parametro", 
-        joinColumns = @JoinColumn(name = "deporte_id"), 
-        inverseJoinColumns = @JoinColumn(name = "parametro_id")
-        )
-    private List<Parametro> parameters;
+    @JoinTable(name = "deporte_parametro", 
+               joinColumns = @JoinColumn(name = "deporte_id"), 
+               inverseJoinColumns = @JoinColumn(name = "parametro_id"))
+    private List<Parametro> parametros = new ArrayList<>();
 
     @OneToMany(mappedBy = "deporte")
     @JsonIgnore
-    private List<Pregunta> preguntas;
+    private List<Pregunta> preguntas = new ArrayList<>();
 
     @OneToMany(mappedBy = "deporte", cascade = CascadeType.REMOVE)
     @JsonIgnore
-    private List<UsuarioDeporte> usuarioDeportes;
+    private List<UsuarioDeporte> usuarioDeportes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "deporte", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Evento> eventos = new ArrayList<>();
 
 }

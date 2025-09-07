@@ -1,5 +1,6 @@
 package com.wildies.wildies.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -39,11 +40,11 @@ public class Parametro {
 
     @ManyToMany(mappedBy = "parametros")
     @JsonIgnore
-    private List <Deporte> deportes;
+    private List <Deporte> deportes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "parametros", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "parametro", cascade = CascadeType.REMOVE)
     @JsonIgnore
-    private List <UsuarioDeporteParametro> usuarioDeporteParametros;
+    private List <UsuarioDeporteParametro> usuarioDeporteParametros = new ArrayList<>();
 
 
 }
