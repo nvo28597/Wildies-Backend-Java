@@ -6,6 +6,11 @@ import java.util.List;
 import com.wildies.wildies.entity.Deporte;
 import com.wildies.wildies.entity.Parametro;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class DeporteResponseDto {
 
     private int id;

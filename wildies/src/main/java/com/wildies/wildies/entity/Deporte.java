@@ -58,4 +58,8 @@ public class Deporte {
     @JsonIgnore
     private List<Evento> eventos = new ArrayList<>();
 
+    public Deporte(String nombre){
+        this.nombre = nombre;
+    }
+
 }
